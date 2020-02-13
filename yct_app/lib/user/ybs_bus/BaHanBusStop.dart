@@ -1,26 +1,51 @@
 import 'package:flutter/material.dart';
 
-class ThamaingBusStop extends StatefulWidget {
+import 'package:flutter/material.dart';
+
+class BaHanBusStop extends StatefulWidget {
   @override
-  _ThamaingBusStopState createState() => _ThamaingBusStopState();
+  _BaHanBusStopState createState() => _BaHanBusStopState();
 }
 
-class _ThamaingBusStopState extends State<ThamaingBusStop> {
+class _BaHanBusStopState extends State<BaHanBusStop> {
   final List<Map> ybsLists = [
     {
-      "busId": "11",
-      "routes": "အောင်မဂလာ‌ေ၀◌းပြေး - ရွှေတိဂုံဘုရား",
-      "colors": Colors.deepPurpleAccent
+      "busId" : "15",
+      "routes" : "သမိုင်း - တညင်းကုန်း",
+      "colors" : Colors.red
     },
     {
-      "busId": "22",
-      "routes": "အနောက်ပိုင်း(ထန်းတပင်) - သခင်မြပန်းခြံ",
-      "colors": Colors.deepPurpleAccent
+      "busId" : "16(A)",
+      "routes" : "သမိုင်း - တညင်းကုန်း",
+      "colors" : Colors.red
     },
     {
-      "busId": "94",
-      "routes": "ကွန်ပျူတာ - ဘူတာကြီး",
-      "colors": Colors.deepPurpleAccent
+      "busId" : "16(B)",
+      "routes" : "သမိုင်း - တညင်းကုန်း",
+      "colors" : Colors.red
+    },
+    {
+      "busId" : "19",
+      "routes" : "သမိုင်း - တညင်းကုန်း",
+      "colors" : Colors.red
+    },{
+      "busId" : "61",
+      "routes" : "သမိုင်း - တညင်းကုန်း",
+      "colors" : Colors.deepPurpleAccent
+    },{
+      "busId" : "68",
+      "routes" : "သမိုင်း - တညင်းကုန်း",
+      "colors" : Colors.deepPurpleAccent
+    },
+    {
+      "busId" : "79",
+      "routes" : "သမိုင်း - တညင်းကုန်း",
+      "colors" : Colors.deepPurpleAccent
+    },
+    {
+      "busId" : "83",
+      "routes" : "သမိုင်း - တညင်းကုန်း",
+      "colors" : Colors.deepPurpleAccent
     },
   ];
 
@@ -102,7 +127,9 @@ class _ThamaingBusStopState extends State<ThamaingBusStop> {
                             'YBS ကားလိုင်းများ',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w600),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600
+                            ),
                           ),
                         ),
                       ),

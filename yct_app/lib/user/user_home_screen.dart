@@ -5,158 +5,186 @@ class UserHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Stack(
           children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ButtonTheme(
-                  minWidth: 140.0,
-                  height: 150.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(80.0),
-                    bottomLeft: Radius.circular(80.0),
-                    bottomRight: Radius.circular(10.0),
-                  )),
-                  buttonColor: Colors.orange,
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'routes');
-                    },
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/user/routes/route.png'),
-                        Text(
-                          'Routes',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 16.0,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ButtonTheme(
-                  minWidth: 140.0,
-                  height: 150.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(80.0),
-                    topRight: Radius.circular(10.0),
-                    bottomLeft: Radius.circular(10.0),
-                    bottomRight: Radius.circular(80.0),
-                  )),
-                  buttonColor: Colors.orange,
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'station',);
-                    },
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/user/stations/station.png',
-                          height: 60,
-                          width: 60,
-                        ),
-                        Text('Station',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 16.0,),
-                        )],
-                    ),
-                  ),
-                ),
-              ],
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 90),
+              child: Center(
+                child: Image.asset("assets/images/user/commom/railwayLogo.png"),
+              ),
             ),
-            SizedBox(
-              width: 10,
+            Container(
+              height: 50,
+              width: double.infinity,
+              //color: Colors.cyan,
+              margin: EdgeInsets.symmetric(vertical: 160),
+              child: Center(
+                child: Text('Yangon Circular Train',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.red,
+                  fontWeight: FontWeight.w600
+                ),),
+              ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ButtonTheme(
-                  minWidth: 140.0,
-                  height: 150.0,
-                  buttonColor: Colors.orange,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(80.0),
-                    topRight: Radius.circular(10.0),
-                    bottomLeft: Radius.circular(10.0),
-                    bottomRight: Radius.circular(80.0),
-                  )),
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'train_list');
-                    },
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/user/trains/train.png',
-                          height: 60,
-                          width: 60,
-                        ),
-                        Text('Trains',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 16.0,
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 260),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      ButtonTheme(
+                        minWidth: 140.0,
+                        height: 150.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10.0),
+                              topRight: Radius.circular(80.0),
+                              bottomLeft: Radius.circular(80.0),
+                              bottomRight: Radius.circular(10.0),
+                            )),
+                        buttonColor: Colors.orange,
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'routes');
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset('assets/images/user/routes/route.png'),
+                              Text(
+                                'Routes',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ButtonTheme(
-                  minWidth: 140.0,
-                  height: 150.0,
-                  buttonColor: Colors.orange,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(5.0),
-                    topRight: Radius.circular(80.0),
-                    bottomLeft: Radius.circular(80.0),
-                    bottomRight: Radius.circular(5.0),
-                  )),
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'news_details');
-                    },
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/user/news/news.png',
-                          height: 60,
-                          width: 60,
-                        ),
-                        Text("News",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 16.0,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      ButtonTheme(
+                        minWidth: 140.0,
+                        height: 150.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(80.0),
+                              topRight: Radius.circular(10.0),
+                              bottomLeft: Radius.circular(10.0),
+                              bottomRight: Radius.circular(80.0),
+                            )),
+                        buttonColor: Colors.orange,
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'station',);
+                          },
+                          child: Column(
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/images/user/stations/station.png',
+                                height: 60,
+                                width: 60,
+                              ),
+                              Text('Station',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 16.0,),
+                              )],
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      ButtonTheme(
+                        minWidth: 140.0,
+                        height: 150.0,
+                        buttonColor: Colors.orange,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(80.0),
+                              topRight: Radius.circular(10.0),
+                              bottomLeft: Radius.circular(10.0),
+                              bottomRight: Radius.circular(80.0),
+                            )),
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'train_list');
+                          },
+                          child: Column(
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/images/user/trains/train.png',
+                                height: 60,
+                                width: 60,
+                              ),
+                              Text('Trains',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      ButtonTheme(
+                        minWidth: 140.0,
+                        height: 150.0,
+                        buttonColor: Colors.orange,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5.0),
+                              topRight: Radius.circular(80.0),
+                              bottomLeft: Radius.circular(80.0),
+                              bottomRight: Radius.circular(5.0),
+                            )),
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'news_details');
+                          },
+                          child: Column(
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/images/user/news/news.png',
+                                height: 60,
+                                width: 60,
+                              ),
+                              Text("News",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
-        ),
+        )
       ),
       bottomNavigationBar: BottomAppBar(
         elevation: 0,

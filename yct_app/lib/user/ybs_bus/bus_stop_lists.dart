@@ -161,37 +161,42 @@ class _BusStopListsState extends State<BusStopLists> {
                   ),
                 ),
               ),
-              Container(
-                height: 100,
-                width: double.infinity,
-                color: Colors.cyan,
-                margin: const EdgeInsets.symmetric(vertical: 400,horizontal: 10),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Icon(Icons.directions_bus,color: Colors.white,),
-                      //SizedBox(width: 30,),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text('‌U Ba Han Bus Stop',
-                            style: TextStyle(
-                                fontSize: 18,
-                              color: Colors.white
-                            ),
-                          ),
-                          Text('‌ဘဟန်မှတ်တိုင်',
-                            style: TextStyle(
-                                fontSize: 18,
+              GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, '/bahan_bus_stop');
+                },
+                child: Container(
+                  height: 100,
+                  width: double.infinity,
+                  color: Colors.cyan,
+                  margin: const EdgeInsets.symmetric(vertical: 400,horizontal: 10),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Icon(Icons.directions_bus,color: Colors.white,),
+                        //SizedBox(width: 30,),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('‌U Ba Han Bus Stop',
+                              style: TextStyle(
+                                  fontSize: 18,
                                 color: Colors.white
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Icon(Icons.navigate_next,color: Colors.white,)
-                    ],
+                            Text('‌ဘဟန်မှတ်တိုင်',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white
+                              ),
+                            ),
+                          ],
+                        ),
+                        Icon(Icons.navigate_next,color: Colors.white,)
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "611504950369",
+    "firebase_url": "https://yct-project-d29eb.firebaseio.com",
+    "project_id": "yct-project-d29eb",
+    "storage_bucket": "yct-project-d29eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611504950369:android:cbc4f2d3dcf6c2e686ee20",
+        "android_client_info": {
+          "package_name": "com.myintmyatthu.yct_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611504950369-mi5udpqdkgbfh6n707vgamn8mi7mi5lf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTLj_W7upVDcmRoAqifdLZpXLeM5eJLok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611504950369-mi5udpqdkgbfh6n707vgamn8mi7mi5lf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

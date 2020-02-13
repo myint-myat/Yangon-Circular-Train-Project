@@ -21,6 +21,8 @@ dependencies:
     sdk: flutter
   flutter_spinkit: "^4.1.1"
   flutter_webview_plugin: ^0.3.10+1
+  firebase_auth: ^0.15.4
+  cloud_firestore: ^0.13.2+1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -55,6 +57,7 @@ flutter:
     - assets/images/user/bottom_bar/ybs/ybs.jpg
     - assets/images/user/bottom_bar/web_view/website.png
     - assets/images/user/bottom_bar/google_map/check_location.png
+    - assets/images/user/commom/railwayLogo.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

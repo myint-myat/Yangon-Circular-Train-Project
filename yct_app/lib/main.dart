@@ -25,10 +25,12 @@ import 'package:yct_app/user/statiions/station_list.dart';
 //Website view
 import 'package:yct_app/user/website/web_view.dart';
 
+
 //YBS and Trains
 import 'package:yct_app/user/ybs_bus/bus_stop_lists.dart';
 import 'package:yct_app/user/ybs_bus/thamaing_bus_stop.dart';
 import 'package:yct_app/user/ybs_bus/market_station_bus_stop.dart';
+import 'package:yct_app/user/ybs_bus/BaHanBusStop.dart';
 
 void main() => runApp(MaterialApp(routes: {
       //app start loading
@@ -57,6 +59,7 @@ void main() => runApp(MaterialApp(routes: {
       //YBS and Trains
       '/bus_stop_lists' :(context) => BusStopLists(),
       '/thamaing_bus_stop' : (context) => ThamaingBusStop(),
-      '/market_station_bus_stop' : (context) => MarketStation()
+      '/market_station_bus_stop' : (context) => MarketStationBusStop(),
+      '/bahan_bus_stop' : (context)  => BaHanBusStop(),
 
     }));
