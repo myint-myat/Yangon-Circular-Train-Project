@@ -158,7 +158,7 @@ class UserHomeScreen extends StatelessWidget {
                             )),
                         child: RaisedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, 'news_details');
+                            Navigator.pushNamed(context, '/news');
                           },
                           child: Column(
                             children: <Widget>[

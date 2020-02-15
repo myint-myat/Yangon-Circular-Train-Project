@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Station extends StatefulWidget {
   @override
@@ -6,48 +7,8 @@ class Station extends StatefulWidget {
 }
 
 class _StationState extends State<Station> {
-  final List<Map> trainsLists = [
-    {
-      "stationId" : "1",
-      "stationName" : "Yangon Central Station",
-      "name" : "ရန်ကုန် ဘူတာ"
-    },
-    {
-      "stationId" : "2",
-      "stationName" : "Pagoda Road Station",
-      "name" : "ဘုရားလမ်း ဘူတာ"
-    },
-    {
-      "stationId" : "3",
-      "stationName" : "Lanmadaw Station",
-      "name" : "လမ်းမတော် ဘူတာ"
-    },
-    {
-      "stationId" : "4",
-      "stationName" : "Pyay Road Station",
-      "name" : "ပြည်လမ်း ဘူတာ"
-    },
-    {
-      "stationId" : "5",
-      "stationName" : "Shan Road Station",
-      "name" : "ရှမ်းလမ်း ဘူတာ"
-    },
-    {
-      "stationId" : "6",
-      "stationName" : "Ahlone Road Station",
-      "name" : "အလုံလမ်း ဘူတာ"
-    },
-    {
-      "stationId" : "7",
-      "stationName" : "Panhlaing Road Station",
-      "name" : "ပန်းလှိုင်လမ်း ဘူတာ"
-    },
-    {
-      "stationId" : "8",
-      "stationName" : "Kemmedine Station",
-      "name" : "ကြည့်မြင့်တိုင် ဘူတာ"
-    },
-  ];
+  final CollectionReference _stationCollection =
+      Firestore.instance.collection("station");
 
   @override
   Widget build(BuildContext context) {
@@ -59,16 +20,41 @@ class _StationState extends State<Station> {
           width: MediaQuery.of(context).size.width,
           child: Stack(
             children: <Widget>[
+//              StreamBuilder(
+//                padding: EdgeInsets.only(top: 145),
+//                height: MediaQuery.of(context).size.height,
+//                width: double.infinity,
+//                child: ListView.builder(
+//                    itemCount: trainsLists.length,
+//                    itemBuilder: (BuildContext context, int index) {
+//                      return buildList(context, index);
+//                    }),
+//              ),
               Container(
                 padding: EdgeInsets.only(top: 145),
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,
-                child: ListView.builder(
-                    itemCount: trainsLists.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildList(context, index);
-                    }),
+//                height: MediaQuery.of(context).size.height,
+//                width: double.infinity,
+                child: StreamBuilder(
+                  stream: _stationCollection.snapshots(),
+                  builder: (context, snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.waiting:
+                        return Center(child: CircularProgressIndicator());
+                        break;
+                      default:
+                        return ListView.builder(
+                          itemCount: snapshot.data.documents.length,
+                          itemBuilder: (context, index) {
+                            return _stationBuildList(
+                                snapshot.data.documents[index]);
+                            //return ...(snapshot,index);
+                          },
+                        );
+                    }
+                  },
+                ),
               ),
+
               Container(
                 height: 140,
                 width: double.infinity,
@@ -129,7 +115,7 @@ class _StationState extends State<Station> {
                               prefixIcon: Material(
                                 elevation: 0,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(30)),
+                                    BorderRadius.all(Radius.circular(30)),
                                 child: Icon(Icons.search),
                               ),
                               border: InputBorder.none,
@@ -148,7 +134,7 @@ class _StationState extends State<Station> {
     );
   }
 
-  Widget buildList(BuildContext context, int index) {
+  Widget _stationBuildList(DocumentSnapshot data) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -161,7 +147,7 @@ class _StationState extends State<Station> {
       //padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
       child: GestureDetector(
         onTap: () {
-          //Navigator.pushNamed(context, '/train_detail');
+          Navigator.pushNamed(context, '/stationDetails');
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,7 +165,7 @@ class _StationState extends State<Station> {
               ),
               child: Center(
                 child: Text(
-                  trainsLists[index]['stationId'],
+                  data['stationId'].toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -196,12 +182,12 @@ class _StationState extends State<Station> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          trainsLists[index]['stationName'],
+                          data['stationName'],
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w600),
                         ),
                         Text(
-                          trainsLists[index]['name'],
+                          data['stationNameM'],
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),

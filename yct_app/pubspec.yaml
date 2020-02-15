@@ -58,6 +58,9 @@ flutter:
     - assets/images/user/bottom_bar/web_view/website.png
     - assets/images/user/bottom_bar/google_map/check_location.png
     - assets/images/user/commom/railwayLogo.png
+    - assets/temp/tempnews.jpg
+    - assets/temp/tempnews1.jpg
+    - assets/temp/tempnews2.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

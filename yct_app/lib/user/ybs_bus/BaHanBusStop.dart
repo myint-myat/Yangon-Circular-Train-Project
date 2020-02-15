@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 class BaHanBusStop extends StatefulWidget {
   @override
   _BaHanBusStopState createState() => _BaHanBusStopState();

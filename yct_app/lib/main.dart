@@ -21,6 +21,7 @@ import 'package:yct_app/user/news/news_details.dart';
 
 //Station
 import 'package:yct_app/user/statiions/station_list.dart';
+import 'package:yct_app/user/statiions/StationDetails.dart';
 
 //Website view
 import 'package:yct_app/user/website/web_view.dart';
@@ -43,11 +44,12 @@ void main() => runApp(MaterialApp(routes: {
       'routes': (context) => Routes(),
 
       //News screen
-      'news': (context) => News(),
-      'news_details': (context) => NewsDetails(),
+      '/news': (context) => News(),
+      '/news_details': (context) => NewsDetails(),
 
       //Station screen
       'station': (context) => Station(),
+      '/stationDetails' : (context) => StationDetails(),
 
       //Train screen
       'train_list': (context) => TrainsList(),
