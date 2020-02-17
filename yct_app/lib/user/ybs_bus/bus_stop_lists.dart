@@ -107,13 +107,14 @@ class _BusStopListsState extends State<BusStopLists> {
                           children: <Widget>[
                             Text('Thamaing Station Bus Stop',
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18
-                              ),
+                            fontSize: 18,
+                            color: Colors.white
+                        ),
                             ),
                             Text('သမိုင်းဘူတာမှတ်တိုင်',
                               style: TextStyle(
-                                  fontSize: 18
+                                  fontSize: 18,
+                                  color: Colors.white
                               ),
                             ),
                           ],
@@ -150,7 +151,8 @@ class _BusStopListsState extends State<BusStopLists> {
                             ),
                             Text('‌ေစ◌ျးဘူတာမှတ်တိုင်',
                               style: TextStyle(
-                                  fontSize: 18
+                                  fontSize: 18,
+                                  color: Colors.white
                               ),
                             ),
                           ],

@@ -23,6 +23,7 @@ dependencies:
   flutter_webview_plugin: ^0.3.10+1
   firebase_auth: ^0.15.4
   cloud_firestore: ^0.13.2+1
+  http: ^0.12.0+4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -51,6 +52,8 @@ flutter:
     - assets/images/user/routes/startend.png
     - assets/images/user/routes/pointse.png
     - assets/images/user/trains/train.png
+    - assets/images/user/trains/railway.png
+    - assets/images/user/trains/clock.png
     - assets/images/user/stations/station.png
     - assets/images/user/news/news.png
     - assets/images/user/bottom_bar/ybs/ybs.png

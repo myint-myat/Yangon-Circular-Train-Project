@@ -33,7 +33,9 @@ import 'package:yct_app/user/ybs_bus/thamaing_bus_stop.dart';
 import 'package:yct_app/user/ybs_bus/market_station_bus_stop.dart';
 import 'package:yct_app/user/ybs_bus/BaHanBusStop.dart';
 
-void main() => runApp(MaterialApp(routes: {
+void main() => runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    routes: {
       //app start loading
       '/': (context) => Loading(),
 

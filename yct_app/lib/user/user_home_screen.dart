@@ -21,12 +21,12 @@ class UserHomeScreen extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 160),
               child: Center(
                 child: Text('Yangon Circular Train',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.red,
-                  fontWeight: FontWeight.w600
-                ),),
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.red,
+                      fontWeight: FontWeight.w600
+                  ),),
               ),
             ),
             Container(
@@ -184,7 +184,7 @@ class UserHomeScreen extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         elevation: 0,

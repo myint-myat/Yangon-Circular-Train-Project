@@ -10,6 +10,8 @@ class _StationState extends State<Station> {
   final CollectionReference _stationCollection =
       Firestore.instance.collection("station");
 
+  //final CollectionReference _collectionReference=Firestore.instance.collectionGroup(path).c
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

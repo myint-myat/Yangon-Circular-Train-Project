@@ -13,7 +13,9 @@ class _NewsDetailsState extends State<NewsDetails> {
     data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text("hello news detail"),
+        title: Text("News Details"),
+        centerTitle: true,
+        elevation: 5.0
       ),
       body: Container(
         child: Stack(
