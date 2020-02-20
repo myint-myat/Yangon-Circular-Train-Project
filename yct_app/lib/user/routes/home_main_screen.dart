@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,9 @@ class Routes extends StatefulWidget {
 }
 
 class _RoutesState extends State<Routes> {
+
+  final CollectionReference _trainsCollection = Firestore.instance.collection("trains");
+
   final List<Map> trainsLists = [
     {
       "trainId": "က - ၁",
@@ -64,11 +68,25 @@ class _RoutesState extends State<Routes> {
                 padding: EdgeInsets.only(top: 220),
                 height: MediaQuery.of(context).size.height,
                 width: double.infinity,
-                child: ListView.builder(
-                    itemCount: trainsLists.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildList(context, index);
-                    }),
+                child: StreamBuilder(
+                  stream: _trainsCollection.snapshots(),
+                  builder: (context,snapshot){
+                    switch (snapshot.connectionState){
+                      case ConnectionState.waiting :
+                        return Center(child: CircularProgressIndicator(),);
+                        break;
+                      default:
+                        return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context,index){
+                              return _trainBuildList(
+                                  snapshot.data.documents[index]
+                              );
+                            }
+                        );
+                    }
+                  },
+                ),
               ),
               Container(
                 height: 250,
@@ -213,7 +231,7 @@ class _RoutesState extends State<Routes> {
     );
   }
 
-  Widget buildList(BuildContext context, int index) {
+  Widget _trainBuildList(DocumentSnapshot data) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -244,7 +262,7 @@ class _RoutesState extends State<Routes> {
               ),
               child: Center(
                 child: Text(
-                  trainsLists[index]['trainId'],
+                 data['trainId'],
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -261,12 +279,12 @@ class _RoutesState extends State<Routes> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          trainsLists[index]['fromTo'],
+                          data['routes'],
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w600),
                         ),
                         Text(
-                          trainsLists[index]['routes'],
+                          data['routesM'],
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),

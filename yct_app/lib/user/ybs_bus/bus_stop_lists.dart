@@ -93,14 +93,14 @@ class _BusStopListsState extends State<BusStopLists> {
                 child: Container(
                   height: 100,
                   width: double.infinity,
-                  color: Colors.cyan,
+                  color: Colors.blueAccent,
                   margin: const EdgeInsets.symmetric(vertical: 180,horizontal: 10),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Icon(Icons.directions_bus),
+                        Icon(Icons.directions_bus,color: Colors.white,),
                         //SizedBox(width: 30,),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +119,7 @@ class _BusStopListsState extends State<BusStopLists> {
                             ),
                           ],
                         ),
-                        Icon(Icons.navigate_next,)
+                        Icon(Icons.navigate_next,color: Colors.white,)
                       ],
                     ),
                   ),
@@ -132,24 +132,24 @@ class _BusStopListsState extends State<BusStopLists> {
                 child: Container(
                   height: 100,
                   width: double.infinity,
-                  color: Colors.cyan,
+                  color: Colors.blueAccent,
                   margin: const EdgeInsets.symmetric(vertical: 290,horizontal: 10),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Icon(Icons.directions_bus),
+                        Icon(Icons.directions_bus,color: Colors.white,),
                         //SizedBox(width: 30,),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text('‌Market Station Bus Stop',
                               style: TextStyle(
-                                  fontSize: 18
+                                  fontSize: 18,color: Colors.white
                               ),
                             ),
-                            Text('‌ေစ◌ျးဘူတာမှတ်တိုင်',
+                            Text('ဈေးဘူတာမှတ်တိုင်',
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.white
@@ -157,7 +157,7 @@ class _BusStopListsState extends State<BusStopLists> {
                             ),
                           ],
                         ),
-                        Icon(Icons.navigate_next,)
+                        Icon(Icons.navigate_next,color: Colors.white,)
                       ],
                     ),
                   ),
@@ -170,7 +170,7 @@ class _BusStopListsState extends State<BusStopLists> {
                 child: Container(
                   height: 100,
                   width: double.infinity,
-                  color: Colors.cyan,
+                  color: Colors.blueAccent,
                   margin: const EdgeInsets.symmetric(vertical: 400,horizontal: 10),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
@@ -188,7 +188,7 @@ class _BusStopListsState extends State<BusStopLists> {
                                 color: Colors.white
                               ),
                             ),
-                            Text('‌ဘဟန်မှတ်တိုင်',
+                            Text('‌ဥ◌ီးဘဟန်မှတ်တိုင်',
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.white

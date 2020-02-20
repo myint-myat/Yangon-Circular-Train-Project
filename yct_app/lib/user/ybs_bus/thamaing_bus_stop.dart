@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ThamaingBusStop extends StatefulWidget {
   @override
@@ -6,23 +7,8 @@ class ThamaingBusStop extends StatefulWidget {
 }
 
 class _ThamaingBusStopState extends State<ThamaingBusStop> {
-  final List<Map> ybsLists = [
-    {
-      "busId": "11",
-      "routes": "အောင်မဂလာ‌ေ၀◌းပြေး - ရွှေတိဂုံဘုရား",
-      "colors": Colors.deepPurpleAccent
-    },
-    {
-      "busId": "22",
-      "routes": "အနောက်ပိုင်း(ထန်းတပင်) - သခင်မြပန်းခြံ",
-      "colors": Colors.deepPurpleAccent
-    },
-    {
-      "busId": "94",
-      "routes": "ကွန်ပျူတာ - ဘူတာကြီး",
-      "colors": Colors.deepPurpleAccent
-    },
-  ];
+
+  final CollectionReference _busStopCollection = Firestore.instance.collection("thamaingBusStop");
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +24,25 @@ class _ThamaingBusStopState extends State<ThamaingBusStop> {
                 padding: EdgeInsets.only(top: 145),
                 height: MediaQuery.of(context).size.height,
                 width: double.infinity,
-                child: ListView.builder(
-                    itemCount: ybsLists.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildList(context, index);
-                    }),
+                child: StreamBuilder(
+                  stream: _busStopCollection.snapshots(),
+                  builder: (context,snapshot){
+                    switch (snapshot.connectionState){
+                      case ConnectionState.waiting :
+                        return Center(child: CircularProgressIndicator(),);
+                        break;
+                      default:
+                        return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context,index){
+                              return _buildList(
+                                  snapshot.data.documents[index]
+                              );
+                            }
+                        );
+                    }
+                  },
+                )
               ),
               Container(
                 height: 140,
@@ -67,7 +67,7 @@ class _ThamaingBusStopState extends State<ThamaingBusStop> {
                         ),
                       ),
                       Text(
-                        'စေ◌ျးဘူတာမှတ်တိုင်',
+                        'သမိုင်းဘူတာမှတ်တိုင်',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 25.0,
@@ -117,7 +117,7 @@ class _ThamaingBusStopState extends State<ThamaingBusStop> {
     );
   }
 
-  Widget buildList(BuildContext context, int index) {
+  Widget _buildList(DocumentSnapshot data) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -143,12 +143,12 @@ class _ThamaingBusStopState extends State<ThamaingBusStop> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(5),
                     bottomLeft: Radius.circular(5)),
-                color: ybsLists[index]['colors'],
+                color: Colors.deepPurpleAccent,
                 //border: Border.all(width: 3,color:Colors.black38),
               ),
               child: Center(
                 child: Text(
-                  ybsLists[index]['busId'],
+                  data['busId'],
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -165,7 +165,7 @@ class _ThamaingBusStopState extends State<ThamaingBusStop> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          ybsLists[index]['routes'],
+                          data['routes'],
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),

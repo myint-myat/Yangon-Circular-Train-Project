@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StationDetails extends StatefulWidget {
   @override
@@ -7,121 +7,14 @@ class StationDetails extends StatefulWidget {
 }
 
 class _StationDetailsState extends State<StationDetails> {
-  //final CollectionReference _stationCollection = Firestore.instance.collection("station");
 
-  final List<Map> toYangon = [
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station(လှော်ကားဘူတာ)"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-  ];
-  
-  final List<Map> toInsein=[
-    {
-      "trainId": "က - 2",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station(လှော်ကားဘူတာ)"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-    {
-      "trainId": "က - ၁",
-      "deptTime": "12:30 pm",
-      "latestStation": "Hlawkar Station"
-    },
-  ];
+  Map dataStation={};
+  final CollectionReference _toMingalarCollection = Firestore.instance.collection("station").document('4qZCdP4VL6nF9krlDo9O').collection('toMingalardon');
+  final CollectionReference _toDanCollection = Firestore.instance.collection("station").document('4qZCdP4VL6nF9krlDo9O').collection('toDanyingon');
 
   @override
   Widget build(BuildContext context) {
+    dataStation = ModalRoute.of(context).settings.arguments;
     return DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -129,7 +22,7 @@ class _StationDetailsState extends State<StationDetails> {
             backgroundColor: Colors.blueAccent,
             centerTitle: true,
             title: Text(
-              'Station Details',
+              dataStation['stationNameM'],
               style: TextStyle(color: Colors.white),
             ),
             elevation: 0,
@@ -145,39 +38,68 @@ class _StationDetailsState extends State<StationDetails> {
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("To Yangon"),
+                      child: Text("To Left"),
                     ),
                   ),
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("To Insein"),
+                      child: Text("To Right"),
                     ),
                   ),
                 ]),
           ),
           body: TabBarView(children: [
             Container(
-              child: SingleChildScrollView(
+              child: Scrollbar(
                 child: Container(
                   height: MediaQuery.of(context).size.height,
-                  width: double.infinity,
-                  child: ListView.builder(
-                      itemCount: toYangon.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return buildList(context, index);
-                      }),
+                  width: MediaQuery.of(context).size.width,
+                  child: StreamBuilder(
+                    stream: _toMingalarCollection.snapshots(),
+                    builder: (context, snapshot) {
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.waiting:
+                          return Center(child: CircularProgressIndicator());
+                          break;
+                        default:
+                          return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context, index) {
+                              return buildList(
+                                  snapshot.data.documents[index]);
+                              //return ...(snapshot,index);
+                            },
+                          );
+                      }
+                    },
+                  ),
                 ),
               ),
             ),
             Container(
-              child: SingleChildScrollView(
+              child: Scrollbar(
                 child: Container(
                   height: MediaQuery.of(context).size.height,
-                  width: double.infinity,
-                  child: ListView.builder(
-                    itemCount: toInsein.length,
-                      itemBuilder: (BuildContext context,int index)=> toInseinList(context, index)
+                  width: MediaQuery.of(context).size.width,
+                  child: StreamBuilder(
+                    stream: _toDanCollection.snapshots(),
+                    builder: (context, snapshot) {
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.waiting:
+                          return Center(child: CircularProgressIndicator());
+                          break;
+                        default:
+                          return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context, index) {
+                              return toInseinList(
+                                  snapshot.data.documents[index]);
+                              //return ...(snapshot,index);
+                            },
+                          );
+                      }
+                    },
                   ),
                 ),
               ),
@@ -186,82 +108,79 @@ class _StationDetailsState extends State<StationDetails> {
         ));
   }
 
-  Widget buildList(BuildContext context, int index) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: Colors.blueAccent) ,
-          color: Colors.white,
-        ),
-        width: double.infinity,
-        height: 100,
-        child: Row(
-          children: <Widget>[
-            Container(
-              width: 100,
-              height: 100,
-              //margin: EdgeInsets.only(right: 15),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(5),
-                    bottomLeft: Radius.circular(5)),
-                color: Colors.deepPurpleAccent,
-                //border: Border.all(width: 3,color:Colors.black38),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    toInsein[index]['trainId'],
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    toInsein[index]['deptTime'],
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
+  Widget buildList(DocumentSnapshot data) {
+    return Container(
+      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(color: Colors.blueAccent) ,
+        color: Colors.white,
+      ),
+      width: double.infinity,
+      height: 100,
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 100,
+            height: 100,
+            //margin: EdgeInsets.only(right: 15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(5),
+                  bottomLeft: Radius.circular(5)),
+              color: Colors.deepPurpleAccent,
+              //border: Border.all(width: 3,color:Colors.black38),
             ),
-           Expanded(
-             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.center,
-               mainAxisAlignment: MainAxisAlignment.center,
-               children: <Widget>[
-                 Text("ခရီးဆုံးဘူတာ",
-                     style: TextStyle(
-                       fontSize: 20.0,
-                       fontWeight: FontWeight.bold
-                     ),
-                 ),
-                 Text(toInsein[index]['latestStation'],
-                 style: TextStyle(
-                   fontWeight: FontWeight.w500,
-                   fontSize: 18.0
-                 ),),
-               ],
-             ),
-           )
-          ],
-        ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                 data['trainId'],
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  data['deptTime'],
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+          ),
+         Expanded(
+           child: Column(
+             crossAxisAlignment: CrossAxisAlignment.center,
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: <Widget>[
+               Text("ခရီးဆုံးဘူတာ",
+                   style: TextStyle(
+                     fontSize: 20.0,
+                     fontWeight: FontWeight.bold
+                   ),
+               ),
+               Text(data['finalStation'],
+               style: TextStyle(
+                 fontWeight: FontWeight.w500,
+                 fontSize: 18.0
+               ),),
+             ],
+           ),
+         )
+        ],
       ),
     );
   }
 
-  Widget toInseinList(BuildContext context, int index) {
+  Widget toInseinList(DocumentSnapshot data) {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+        margin: EdgeInsets.only(top: 5, left: 10, right: 10,bottom: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: Colors.blueAccent) ,
@@ -287,14 +206,14 @@ class _StationDetailsState extends State<StationDetails> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    toYangon[index]['trainId'],
+                    data['trainId'],
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    toYangon[index]['deptTime'],
+                    data['deptTime'],
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -314,11 +233,12 @@ class _StationDetailsState extends State<StationDetails> {
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  Text(toYangon[index]['latestStation'],
+                  Text(data['finalStation'],
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 18.0
-                    ),),
+                    ),
+                  ),
                 ],
               ),
             )

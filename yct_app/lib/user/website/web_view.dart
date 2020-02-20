@@ -21,7 +21,7 @@ class _WebViewState extends State<WebView> {
       ),
       body:Container(
         child: WebviewScaffold(
-          url: "https://www.facebook.com",
+          url: "https://www.myanmar.gov.mm/en/government-website",
           withZoom: false,
           withLocalStorage: true,
         ),

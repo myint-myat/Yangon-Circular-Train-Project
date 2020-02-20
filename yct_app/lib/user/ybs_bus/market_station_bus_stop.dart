@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MarketStationBusStop extends StatefulWidget {
   @override
@@ -6,46 +7,8 @@ class MarketStationBusStop extends StatefulWidget {
 }
 
 class _MarketStationBusStopState extends State<MarketStationBusStop> {
-  final List<Map> ybsLists = [
-    {
-      "busId" : "15",
-      "routes" : "သမိုင်း - တညင်းကုန်း",
-      "colors" : Colors.red
-    },
-    {
-      "busId" : "16(A)",
-      "routes" : "သမိုင်း - တညင်းကုန်း",
-      "colors" : Colors.red
-    },
-    {
-      "busId" : "16(B)",
-      "routes" : "သမိုင်း - တညင်းကုန်း",
-      "colors" : Colors.red
-    },
-    {
-      "busId" : "19",
-      "routes" : "သမိုင်း - တညင်းကုန်း",
-      "colors" : Colors.red
-    },{
-      "busId" : "61",
-      "routes" : "သမိုင်း - တညင်းကုန်း",
-      "colors" : Colors.deepPurpleAccent
-    },{
-      "busId" : "68",
-      "routes" : "သမိုင်း - တညင်းကုန်း",
-      "colors" : Colors.deepPurpleAccent
-    },
-    {
-      "busId" : "79",
-      "routes" : "သမိုင်း - တညင်းကုန်း",
-      "colors" : Colors.deepPurpleAccent
-    },
-    {
-      "busId" : "83",
-      "routes" : "သမိုင်း - တညင်းကုန်း",
-      "colors" : Colors.deepPurpleAccent
-    },
-  ];
+
+  final CollectionReference _busStopCollection = Firestore.instance.collection("marketStationBusStop");
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +24,25 @@ class _MarketStationBusStopState extends State<MarketStationBusStop> {
                 padding: EdgeInsets.only(top: 145),
                 height: MediaQuery.of(context).size.height,
                 width: double.infinity,
-                child: ListView.builder(
-                    itemCount: ybsLists.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildList(context, index);
-                    }),
+                child: StreamBuilder(
+                  stream: _busStopCollection.snapshots(),
+                  builder: (context,snapshot){
+                    switch (snapshot.connectionState){
+                      case ConnectionState.waiting :
+                        return Center(child: CircularProgressIndicator(),);
+                        break;
+                      default:
+                        return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context,index){
+                              return _buildList(
+                                  snapshot.data.documents[index]
+                              );
+                            }
+                        );
+                    }
+                  },
+                )
               ),
               Container(
                 height: 140,
@@ -90,7 +67,7 @@ class _MarketStationBusStopState extends State<MarketStationBusStop> {
                         ),
                       ),
                       Text(
-                        'စေ◌ျးဘူတာမှတ်တိုင်',
+                        'ဈေးဘူတာမှတ်တိုင်',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 25.0,
@@ -142,7 +119,7 @@ class _MarketStationBusStopState extends State<MarketStationBusStop> {
     );
   }
 
-  Widget buildList(BuildContext context, int index) {
+  Widget _buildList(DocumentSnapshot data) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -168,12 +145,12 @@ class _MarketStationBusStopState extends State<MarketStationBusStop> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(5),
                     bottomLeft: Radius.circular(5)),
-                color: ybsLists[index]['colors'],
+                color: Colors.blueAccent,
                 //border: Border.all(width: 3,color:Colors.black38),
               ),
               child: Center(
                 child: Text(
-                  ybsLists[index]['busId'],
+                  data['busId'],
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -190,7 +167,7 @@ class _MarketStationBusStopState extends State<MarketStationBusStop> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          ybsLists[index]['routes'],
+                          data['routes'],
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),

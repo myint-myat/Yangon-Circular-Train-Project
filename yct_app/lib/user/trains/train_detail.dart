@@ -7,94 +7,154 @@ class TrainDetail extends StatefulWidget {
 
 class _TrainDetailState extends State<TrainDetail> {
 
+  Map data={};
+
   final List<Map> routeList=[
     {
-      "trainNo" : "က - ၁",
-      "stationName" : "Insein Station(အင်းစိန်ဘူတာ)",
-      "stationNmaeM" : "အင်းစိန်ဘူတာ",
-      "arriveTime" : "12:30 pm",
-      "deptTime" : "12:33 pm",
+      "stationName" : "Yangon Station(ရန်ကုန်ဘူတာကြီး",
       "time" : "arrive     -  depart 12:33 pm"
     },
     {
-      "trainNo" : "က - ၁",
+
+      "stationName" : "Pagoda Road Station(ဘုရားလမ်းဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Lamadaw Station(လမ်းမတော်ဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Pyay Road Station(ပြည်လမ်းဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Shan Road Station(ရှမ်းလမ်းဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Ahlone Road Station(အလုံလမ်းဘူတာ)",
+      "time" : "arrive     -  depart 12:33 pm"
+    },
+    {
+
       "stationName" : "Gyogone Station(ကြို့ကုန်းဘူတာ)",
-      "stationNmaeM" : "အင်းစိန်ဘူတာ",
-      "arriveTime" : "12:30 pm",
-      "deptTime" : "12:33 pm",
       "time" : "arrive 12:30 pm - depart 12:33 pm"
     },
     {
-      "trainNo" : "က - ၁",
       "stationName" : "Thamaingmyothit Station(သမိုင်းမြိူ့သစ်ဘူတာ)",
-      "stationNmaeM" : "အင်းစိန်ဘူတာ",
-      "arriveTime" : "12:30 pm",
-      "deptTime" : "12:33 pm",
       "time" : "arrive 12:30 pm - depart 12:33 pm"
     },
     {
-      "trainNo" : "က - ၁",
       "stationName" : "Insein Station",
-      "stationNmaeM" : "အင်းစိန်ဘူတာ",
-      "arriveTime" : "12:30 pm",
-      "deptTime" : "12:33 pm",
       "time" : "arrive 12:30 pm - depart 12:33 pm"
     },
     {
-      "trainNo" : "က - ၁",
       "stationName" : "Insein Station",
-      "stationNmaeM" : "အင်းစိန်ဘူတာ",
-      "arriveTime" : "12:30 pm",
-      "deptTime" : "12:33 pm",
       "time" : "arrive 12:30 pm - depart 12:33 pm"
     },
     {
-      "trainNo" : "က - ၁",
-      "stationName" : "Gyogone Station",
-      "stationNmaeM" : "အင်းစိန်ဘူတာ",
-      "arriveTime" : "12:30 pm",
-      "deptTime" : "12:33 pm",
+      "stationName" : "Insein Station(အင်းစိန်ဘူတာ)",
+      "time" : "arrive     -  depart 12:33 pm"
+    },
+    {
+
+      "stationName" : "Gyogone Station(ကြို့ကုန်းဘူတာ)",
       "time" : "arrive 12:30 pm - depart 12:33 pm"
     },
     {
-      "trainNo" : "က - ၁",
-      "stationName" : "Thamaing Myothit Station",
-      "stationNmaeM" : "အင်းစိန်ဘူတာ",
-      "arriveTime" : "12:30 pm",
-      "deptTime" : "12:33 pm",
+      "stationName" : "Thamaingmyothit Station(သမိုင်းမြိူ့သစ်ဘူတာ)",
       "time" : "arrive 12:30 pm - depart 12:33 pm"
     },
     {
-      "trainNo" : "က - ၁",
-      "stationName" : "Gyogone Station",
-      "stationNmaeM" : "အင်းစိန်ဘူတာ",
-      "arriveTime" : "12:30 pm",
-      "deptTime" : "12:33 pm",
+      "stationName" : "Insein Station",
       "time" : "arrive 12:30 pm - depart 12:33 pm"
     },
     {
-      "trainNo" : "က - ၁",
-      "stationName" : "Thamaing Myothit Station",
-      "stationNmaeM" : "အင်းစိန်ဘူတာ",
-      "arriveTime" : "12:30 pm",
-      "deptTime" : "12:33 pm",
+      "stationName" : "Insein Station",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Insein Station(အင်းစိန်ဘူတာ)",
+      "time" : "arrive     -  depart 12:33 pm"
+    },
+    {
+
+      "stationName" : "Gyogone Station(ကြို့ကုန်းဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Thamaingmyothit Station(သမိုင်းမြိူ့သစ်ဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Insein Station",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Insein Station",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Insein Station(အင်းစိန်ဘူတာ)",
+      "time" : "arrive     -  depart 12:33 pm"
+    },
+    {
+
+      "stationName" : "Gyogone Station(ကြို့ကုန်းဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Thamaingmyothit Station(သမိုင်းမြိူ့သစ်ဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Insein Station",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Insein Station",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Insein Station(အင်းစိန်ဘူတာ)",
+      "time" : "arrive     -  depart 12:33 pm"
+    },
+    {
+
+      "stationName" : "Gyogone Station(ကြို့ကုန်းဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Thamaingmyothit Station(သမိုင်းမြိူ့သစ်ဘူတာ)",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Insein Station",
+      "time" : "arrive 12:30 pm - depart 12:33 pm"
+    },
+    {
+      "stationName" : "Insein Station",
       "time" : "arrive 12:30 pm - depart 12:33 pm"
     },
   ];
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text("Train Detail"),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
+      body: Scrollbar(
         child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Stack(
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(top:160),
                 height: MediaQuery.of(context).size.height,
+                width: double.infinity,
                 child: ListView.builder(
                     itemCount: routeList.length,
                     itemBuilder: (BuildContext context,int index){
@@ -119,7 +179,7 @@ class _TrainDetailState extends State<TrainDetail> {
                         SizedBox(width: 10,),
                         Image.asset('assets/images/user/trains/train.png',height: 30,width: 30,),
                         SizedBox(width: 10,),
-                        Text("က - ၃",
+                        Text(data['trainId'],
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
@@ -133,7 +193,7 @@ class _TrainDetailState extends State<TrainDetail> {
                         SizedBox(width: 10,),
                         Image.asset('assets/images/user/stations/station.png',height: 30,width: 30,),
                         SizedBox(width: 10,),
-                        Text('Insein Station To Yangon Station',
+                        Text(data['routes'],
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
@@ -147,7 +207,7 @@ class _TrainDetailState extends State<TrainDetail> {
                         SizedBox(width: 10,),
                         Image.asset('assets/images/user/stations/station.png',height: 30,width: 30,),
                         SizedBox(width: 10,),
-                        Text('အင်းစိန်ဘူတာ မှ ရန်ကုန်ဘူတာ',
+                        Text(data['routesM'],
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
@@ -161,12 +221,16 @@ class _TrainDetailState extends State<TrainDetail> {
               ),
               Container(
                 padding: EdgeInsets.only(top: 130),
-                child: Center(
-                  child: Text("Station",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25
-                  ),),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                 children: <Widget>[
+                   Text("Station",
+                     style: TextStyle(
+                         fontWeight: FontWeight.bold,
+                         fontSize: 25
+                     ),
+                   ),
+                 ],
                 ),
               ),
             ],

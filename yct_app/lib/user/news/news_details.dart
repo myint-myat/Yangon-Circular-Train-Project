@@ -25,7 +25,7 @@ class _NewsDetailsState extends State<NewsDetails> {
               height: 250,
               width: double.infinity,
               color: Colors.cyan,
-              child: Image.asset(data['image'],width: double.infinity,
+              child: Image.asset('assets/temp/tempnews.jpg',width: double.infinity,
               ),
             ),
             Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class UserHomeScreen extends StatelessWidget {
   @override
@@ -186,41 +187,54 @@ class UserHomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 0,
-        color: Colors.blue,
-        child: Container(
-          height: 60,
-          child: Row(
-            children: <Widget>[
-              SizedBox(width: 50,),
-              IconButton(
-                icon: Image.asset('assets/images/user/bottom_bar/ybs/ybs.jpg',height: 30,width: 30,),
-                onPressed: (){
-                  Navigator.pushNamed(context, '/bus_stop_lists');
-                },
-              ),
-              SizedBox(width: 50,),
-              IconButton(
-                icon: Image.asset('assets/images/user/bottom_bar/web_view/website.png',height: 30,width: 30,color: Colors.white,),
-                onPressed: (){
-                  Navigator.pushNamed(context, 'web_view');
-                },
-              ),
-              SizedBox(width: 50,),
-              IconButton(
-                icon: Image.asset('assets/images/user/bottom_bar/google_map/check_location.png',height: 30,width: 30,color:Colors.white),
-                onPressed: (){},
-              ),
-            ],
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.more_horiz),
+      floatingActionButton: SpeedDial(
+        // both default to 16
+        marginRight: 30,
+        marginBottom: 50,
+        animatedIcon: AnimatedIcons.menu_close,
+        animatedIconTheme: IconThemeData(size: 22.0),
+        closeManually: false,
+        curve: Curves.bounceIn,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.5,
+        onOpen: () => print('OPENING DIAL'),
+        onClose: () => print('DIAL CLOSED'),
+        tooltip: 'Speed Dial',
+        heroTag: 'speed-dial-hero-tag',
         backgroundColor: Colors.orange,
-        onPressed: (){},
+        foregroundColor: Colors.black,
+        elevation: 8.0,
+        shape: CircleBorder(),
+        children: [
+          SpeedDialChild(
+              child: Icon(Icons.directions_bus,color: Colors.black,),
+              backgroundColor: Colors.orangeAccent,
+              label: 'ရထားမှ YBS ပြောင်းစီးရန်မှတ်တိုင်များ',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => Navigator.pushNamed(context, '/bus_stop_lists')
+          ),
+          SpeedDialChild(
+              child: Image.asset('assets/images/user/bottom_bar/web_view/website.png',height: 10,width: 10,color: Colors.white,),
+              backgroundColor: Colors.orangeAccent,
+              label: 'Myanmar Railway Website',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => Navigator.pushNamed(context, 'web_view')
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.map),
+            backgroundColor: Colors.blue,
+            label: 'Yangon Circular Train Map',
+            labelStyle: TextStyle(fontSize: 18.0),
+            onTap: () => Navigator.pushNamed(context, '/circular_map')
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.info),
+            backgroundColor: Colors.green,
+            label: 'Abouts',labelBackgroundColor: Colors.cyan,
+            labelStyle: TextStyle(fontSize: 18.0),
+            onTap: () => Navigator.pushNamed(context, '/app_information'),
+          ),
+        ],
       ),
     );
   }
